@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// Estructura del nodo para la lista enlazada de procesos
 struct NodoProceso {
     int id;
     string nombre;
@@ -12,7 +11,7 @@ struct NodoProceso {
     string estado;
     NodoProceso* siguiente;
 
-    // Constructor para inicializar el nodo fácilmente
+   
     NodoProceso(int _id, string _nombre, string _prioridad, int _memoriaMB, string _estado) {
         id = _id;
         nombre = _nombre;
@@ -23,7 +22,7 @@ struct NodoProceso {
     }
 };
 
-// Función para buscar un proceso por su ID (código)
+
 NodoProceso* BuscarProceso(NodoProceso* cabeza, int codigo) {
     NodoProceso* actual = cabeza;
     while (actual != NULL && actual->id != codigo) {
@@ -32,7 +31,7 @@ NodoProceso* BuscarProceso(NodoProceso* cabeza, int codigo) {
     return actual; // Retorna el puntero si lo encuentra, o NULL si no existe
 }
 
-// Función para validar los datos del proceso antes de insertarlo
+// FunciÃ³n para validar los datos del proceso antes de insertarlo
 bool ValidarProceso(NodoProceso* cabeza, int codigo, string nombre, string prioridad, int memoriaMB) {
     if (codigo <= 0 || memoriaMB <= 0) {
         return false;
@@ -42,11 +41,11 @@ bool ValidarProceso(NodoProceso* cabeza, int codigo, string nombre, string prior
         return false;
     }
     
-    // Retorna true solo si el código no está repetido en la lista
+    // Retorna true solo si el cÃ³digo no estÃ¡ repetido en la lista
     return BuscarProceso(cabeza, codigo) == NULL;
 }
 
-// Procedimiento para registrar un nuevo proceso al final de la lista enlazada
+
 void RegistrarProceso(NodoProceso*& cabeza, int codigo, string nombre, string prioridad, int memoriaMB) {
     if (!ValidarProceso(cabeza, codigo, nombre, prioridad, memoriaMB)) {
         cout << "Error: Datos invalidos o ID repetido (" << codigo << ")." << endl;
@@ -68,7 +67,7 @@ void RegistrarProceso(NodoProceso*& cabeza, int codigo, string nombre, string pr
     cout << "Proceso '" << nombre << "' registrado correctamente." << endl;
 }
 
-// Función auxiliar para mostrar todos los procesos en consola
+
 void MostrarProcesos(NodoProceso* cabeza) {
     cout << "\n--- LISTA DE PROCESOS ---" << endl;
     NodoProceso* actual = cabeza;
@@ -87,9 +86,9 @@ void MostrarProcesos(NodoProceso* cabeza) {
     cout << "-------------------------\n" << endl;
 }
 
-// Programa principal para probar las funciones
+
 int main() {
-    NodoProceso* cabeza = NULL; // Inicializamos la lista vacía
+    NodoProceso* cabeza = NULL; // Inicializamos la lista vacÃ­a
 
     // Pruebas de registro
     RegistrarProceso(cabeza, 101, "Navegador", "Alta", 512);
@@ -99,7 +98,7 @@ int main() {
     // Prueba con ID repetido (debe dar error)
     RegistrarProceso(cabeza, 101, "Otro Proceso", "Alta", 100);
     
-    // Prueba con prioridad inválida (debe dar error)
+    // Prueba con prioridad invÃ¡lida (debe dar error)
     RegistrarProceso(cabeza, 104, "Juego", "Urgente", 1024);
 
     // Mostrar resultados
